@@ -30,7 +30,8 @@ pipeline{
           stage('deploy on web server'){
               steps{
                   sshagent(['24120ad2-8b74-4d51-b1bf-1dedd2743dd6']) {
-                    sh 'ssh -o StrictHostKeyChecking=no ubuntu@192.168.100.124 "docker run -d -p 3000:3000 --name deploy3 daus2936/nodejsapp"'
+                    sh 'ssh -o StrictHostKeyChecking=no ubuntu@192.168.100.124 "docker rmi $registry:latest; \
+                    docker run -d -p 3000:3000 --name deploy5 daus2936/nodejsapp"'
 
                   }
             }    

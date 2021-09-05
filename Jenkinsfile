@@ -8,7 +8,7 @@ pipeline{
     stages {
         stage('clone') {
             steps {
-                git 'https://github.com/wardviaene/docker-demo'
+                git 'https://github.com/daus2936/nodejshello.git'
             }
         }
         stage('Building image') {

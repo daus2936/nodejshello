@@ -1,7 +1,7 @@
 pipeline{  
   environment {
     registry = "daus2936/nodejsapp"
-    registryCredential = '0b96ac80-1ff0-4643-a45d-e8af270841ac'
+    registryCredential = 'dockerhub'
     dockerImage = ''
   }
   agent any
@@ -29,11 +29,12 @@ pipeline{
           }
           stage('deploy on web server'){
               steps{
-                  sshagent(['49e68d2e-8243-4106-b062-a333ab7ba0fb']) {
-                    sh 'ssh -o StrictHostKeyChecking=no ubuntu@192.168.100.124 "docker run -d -p 3000:3000 --name $BUILD_NUMBER daus2936/nodejsapp:$BUILD_NUMBER"'
+                  sshagent(['Web-Server']) {
+                    sh 'ssh -o StrictHostKeyChecking=no ubuntu@192.168.100.124 "docker run -d -p 3000:3000 --name docker-$BUILD_NUMBER daus2936/nodejsapp:$BUILD_NUMBER"'
 
                   }
             }    
         }
     }
 }
+
